@@ -5,8 +5,8 @@
     "dev": "concurrently yarn:dev:electron yarn:dev:vite -n electron,vite -k -c green,yellow",
     "dev:electron": "NODE_ENV='development' electron electron-entrypoint.js",
     "dev:vite": "vite",
-    "build": "vite build",
-    "prod": "vite build && cd dist && electron ../electron-entrypoint.js"
+    "build": "vite build --base=dist",
+    "prod": "vite build --base=\"${PWD}/dist\" && electron electron-entrypoint.js"
   },
   "dependencies": {
     "concurrently": "^6.4.0",
