@@ -12,12 +12,12 @@ const builtinsPlugin = {
 // https://vitejs.dev/config/
 export default defineConfig({
   optimizeDeps: {
-    exclude: ["crypto"],
+    exclude: ["crypto", "fs"],
   },
   plugins: [
     react(),
     commonjsExternals({
-      externals: ["crypto"],
+      externals: ["crypto", "fs"],
     }),
     builtinsPlugin,
   ],

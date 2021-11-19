@@ -1,12 +1,10 @@
-import { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import crypto from "crypto";
+import fs from "fs";
 
-import { checkForCrypto } from "dependency-with-crypto";
+import { checkForCrypto, checkForFS } from "dependency-with-crypto";
 
 function App() {
-  console.log(checkForCrypto);
   return (
     <div className="App">
       <button onClick={() => checkForCrypto()}>
@@ -26,6 +24,23 @@ function App() {
         }}
       >
         Check for crypto in app
+      </button>
+      <br />
+      <button onClick={() => checkForFS()}>Check for fs in dependency</button>
+
+      <button
+        onClick={() => {
+          // @ts-ignore
+          if (fs.readFileSync) {
+            console.log("fs seems to be fine");
+            console.log(fs);
+          } else {
+            console.log("fs has no method readFileSync");
+            console.log(fs);
+          }
+        }}
+      >
+        Check for fs in app
       </button>
     </div>
   );
