@@ -2,13 +2,20 @@
   "name": "vite-electron-repro",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "serve": "vite preview"
+    "dev": "concurrently yarn:dev:electron yarn:dev:vite -n electron,vite -k -c green,yellow",
+    "dev:electron": "NODE_ENV='development' electron electron-entrypoint.js",
+    "dev:vite": "vite",
+    "build": "vite build",
+    "prod": "vite build && cd dist && electron ../electron-entrypoint.js"
   },
   "dependencies": {
+    "concurrently": "^6.4.0",
+    "dependency-with-crypto": "./dependency-with-crypto",
+    "electron": "^16.0.1",
     "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react-dom": "^17.0.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "vite-plugin-commonjs-externals": "^0.1.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
